@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+<script type="text/javascript">
+  $(function() {
+    var submit_form = function(e) {
+      $.getJSON($SCRIPT_ROOT + '/_add_numbers', {
+
+        c: $('input[name="c"]').val()
+      }, function(data) {
+        $('#result').text(data.result);
+        
+      });
+      return false;
+    };
+
+   
+    $('#slider').bind('onchange', submit_form);
+    $('#slider').bind('change', submit_form); 
+  });
+</script>
+<h1>jQuery Example</h1>
+
+  <input id="slider" type="range" step="5" min="0" max="100" name="c">
+  <p>
+  <span id="result"></span>
+{% endblock %}
